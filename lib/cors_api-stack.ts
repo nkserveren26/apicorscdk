@@ -5,7 +5,6 @@ import { APIGatewayCreator } from './services/apigateway/creator';
 import { Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { LambdaCreator } from './services/lambda/creator';
 import { LambdaFunctionParams } from './services/lambda/interfaces';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class CorsApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
