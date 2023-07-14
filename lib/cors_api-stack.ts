@@ -29,10 +29,12 @@ export class CorsApiStack extends cdk.Stack {
     const lambdaFunction: Function = LambdaCreator.createLambdaFunction(this, lambdaParams);
 
     const apiParams = {
-      function: "",
+      function: lambdaParams,
       resource: "getdata",
       method: "GET",
     };
+
+
 
     
   }
