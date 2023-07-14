@@ -1,16 +1,19 @@
 import * as cdk from 'aws-cdk-lib';
+import { RestApi } from 'aws-cdk-lib/aws-apigateway';
 import { Construct } from 'constructs';
+import { APIGatewayCreator } from './services/apigateway/creator';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class CorsApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    const api: RestApi = APIGatewayCreator.createRestApi(
+      this,
+      "testAPI",
+      "CDKデプロイテスト用のAPI Gateway",
+    );
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'CorsApiQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    
   }
 }
