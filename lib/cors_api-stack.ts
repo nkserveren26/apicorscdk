@@ -34,7 +34,7 @@ export class CorsApiStack extends cdk.Stack {
 
     const lambdaIntegration = new LambdaIntegration(lambdaFunction);
 
-    const apiResource = APIGatewayCreator.createResource(api, apiParams);
+    const apiResource = APIGatewayCreator.createResource(api, apiParams.resource);
     apiResource.addMethod(
       apiParams.method,
       lambdaIntegration
