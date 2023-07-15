@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import { RestApi } from 'aws-cdk-lib/aws-apigateway';
+import { LambdaIntegration, RestApi } from 'aws-cdk-lib/aws-apigateway';
 import { Construct } from 'constructs';
 import { APIGatewayCreator } from './services/apigateway/creator';
 import { Function, Runtime } from 'aws-cdk-lib/aws-lambda';
@@ -33,7 +33,14 @@ export class CorsApiStack extends cdk.Stack {
       "CDKデプロイテスト用のAPI Gateway",
     );
 
+    const lambdaIntegration = new LambdaIntegration(lambdaFunction);
+
     const apiResource = APIGatewayCreator.createResource(api);
+    apiResource.addMethod(
+      apiParams.method,
+      lambdaIntegration
+    );
+
 
 
 
