@@ -40,10 +40,6 @@ export class CorsApiStack extends cdk.Stack {
       apiParams.method,
       lambdaIntegration
     );
-
-
-
-
     
   }
 }
