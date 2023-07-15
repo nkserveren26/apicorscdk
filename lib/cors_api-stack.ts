@@ -10,12 +10,6 @@ export class CorsApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const api: RestApi = APIGatewayCreator.createRestApi(
-      this,
-      "testAPI",
-      "CDKデプロイテスト用のAPI Gateway",
-    );
-
     const lambdaParams: LambdaFunctionParams = {
       functionName: "APIFunction",
       codePath: "lambda/APIFunction",
@@ -32,6 +26,14 @@ export class CorsApiStack extends cdk.Stack {
       resource: "getdata",
       method: "GET",
     };
+
+    const api: RestApi = APIGatewayCreator.createRestApi(
+      this,
+      "testAPI",
+      "CDKデプロイテスト用のAPI Gateway",
+    );
+
+    const apiResource = APIGatewayCreator.createResource(api);
 
 
 
