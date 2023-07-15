@@ -1,4 +1,4 @@
-import { Resource, RestApi } from "aws-cdk-lib/aws-apigateway";
+import { LambdaIntegration, Resource, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
 
 export class APIGatewayCreator {
@@ -12,7 +12,14 @@ export class APIGatewayCreator {
         });
     }
 
-    public static createResource(restApi: RestApi, resourceName: string): Resource  {
+    public static addResourceToApi(restApi: RestApi, resourceName: string): Resource  {
         return restApi.root.addResource(resourceName);
+    }
+
+    public static addMethodToResource(
+        apiResource: Resource, 
+        method: string, 
+        lambdaIntegration: LambdaIntegration) {
+            return apiResource.addMethod(method, lambdaIntegration);
     }
 }
