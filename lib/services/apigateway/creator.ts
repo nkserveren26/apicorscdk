@@ -12,7 +12,7 @@ export class APIGatewayCreator {
         });
     }
 
-    public static createResource(restApi: RestApi): Resource  {
-        return restApi.root.addResource('hello_world');
+    public static createResource(restApi: RestApi, params): Resource  {
+        return restApi.root.addResource(params.resource);
     }
 }
