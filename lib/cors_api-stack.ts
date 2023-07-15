@@ -16,7 +16,6 @@ export class CorsApiStack extends cdk.Stack {
       runtime: Runtime.PYTHON_3_9,
       description: "API Gateway用のLambda",
       handler: "index.handler",
-
     };
 
     const lambdaFunction: Function = LambdaCreator.createLambdaFunction(this, lambdaParams);
@@ -40,6 +39,5 @@ export class CorsApiStack extends cdk.Stack {
       apiParams.method,
       lambdaIntegration
     );
-    
   }
 }
