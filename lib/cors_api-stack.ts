@@ -10,7 +10,7 @@ export class CorsApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const getDatalambdaParams: LambdaFunctionParams = {
+    const getDataLambdaParams: LambdaFunctionParams = {
       functionName: "getDataAPIFunction",
       codePath: "lambda/get_data",
       runtime: Runtime.PYTHON_3_9,
@@ -26,10 +26,12 @@ export class CorsApiStack extends cdk.Stack {
       handler: "index.handler",
     };
 
-    const getDatalambdaFunction: Function = LambdaCreator.createLambdaFunction(this, getDatalambdaParams);
+    const getDataLambdaFunction: Function = LambdaCreator.createLambdaFunction(this, getDataLambdaParams);
+
+    //const postDataLambdaFunction: Function = LambdaCreator.createLambdaFunction(this, getDataLambdaParams);
 
     const getDataApiParams = {
-      function: getDatalambdaParams,
+      function: getDataLambdaFunction,
       resource: "getdata",
       method: "GET",
     };
@@ -40,7 +42,7 @@ export class CorsApiStack extends cdk.Stack {
       "CDKデプロイテスト用のAPI Gateway",
     );
 
-    const lambdaIntegration = new LambdaIntegration(getDatalambdaFunction);
+    const lambdaIntegration = new LambdaIntegration(getDataLambdaFunction);
 
     const apiResource = APIGatewayCreator.addResourceToApi(api, getDataApiParams.resource);
     const method = APIGatewayCreator.addMethodToResource(apiResource,getDataApiParams.method, lambdaIntegration);
