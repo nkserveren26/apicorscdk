@@ -20,7 +20,7 @@ export class CorsApiStack extends cdk.Stack {
 
     const getDatalambdaFunction: Function = LambdaCreator.createLambdaFunction(this, getDatalambdaParams);
 
-    const apiParams = {
+    const getDataApiParams = {
       function: getDatalambdaParams,
       resource: "getdata",
       method: "GET",
@@ -34,7 +34,7 @@ export class CorsApiStack extends cdk.Stack {
 
     const lambdaIntegration = new LambdaIntegration(getDatalambdaFunction);
 
-    const apiResource = APIGatewayCreator.addResourceToApi(api, apiParams.resource);
-    const method = APIGatewayCreator.addMethodToResource(apiResource,apiParams.method, lambdaIntegration);
+    const apiResource = APIGatewayCreator.addResourceToApi(api, getDataApiParams.resource);
+    const method = APIGatewayCreator.addMethodToResource(apiResource,getDataApiParams.method, lambdaIntegration);
   }
 }
