@@ -10,7 +10,7 @@ export class CorsApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const lambdaParams: LambdaFunctionParams = {
+    const getDatalambdaParams: LambdaFunctionParams = {
       functionName: "APIFunction",
       codePath: "lambda/APIFunction",
       runtime: Runtime.PYTHON_3_9,
@@ -18,10 +18,10 @@ export class CorsApiStack extends cdk.Stack {
       handler: "index.handler",
     };
 
-    const getDatalambdaFunction: Function = LambdaCreator.createLambdaFunction(this, lambdaParams);
+    const getDatalambdaFunction: Function = LambdaCreator.createLambdaFunction(this, getDatalambdaParams);
 
     const apiParams = {
-      function: lambdaParams,
+      function: getDatalambdaParams,
       resource: "getdata",
       method: "GET",
     };
