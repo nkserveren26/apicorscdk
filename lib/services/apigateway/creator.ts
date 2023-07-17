@@ -1,4 +1,4 @@
-import { LambdaIntegration, Resource, RestApi } from "aws-cdk-lib/aws-apigateway";
+import { Cors, LambdaIntegration, Resource, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
 
 export class APIGatewayCreator {
@@ -8,7 +8,13 @@ export class APIGatewayCreator {
         apiDescription: string): RestApi {
         return new RestApi(self,apiGatewayName, {
             restApiName: apiGatewayName,
-            description: apiDescription, 
+            description: apiDescription,
+            defaultCorsPreflightOptions: {
+                allowOrigins: Cors.ALL_ORIGINS,
+                allowMethods: Cors.ALL_METHODS,
+                allowHeaders: Cors.DEFAULT_HEADERS,
+                statusCode: 200,
+            }, 
         });
     }
 
