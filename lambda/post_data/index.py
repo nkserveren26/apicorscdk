@@ -1,7 +1,7 @@
 import json
 
 def handler(event, context):
-    response_body = {"result": "Succeeded"}
+    response_body = {"result": "Succeeded", "msg": "post process completed"}
     return {
         'statusCode': 200,
         'headers': {
