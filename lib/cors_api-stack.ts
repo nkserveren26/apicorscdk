@@ -20,7 +20,7 @@ export class CorsApiStack extends cdk.Stack {
 
     const postDataLambdaParams: LambdaFunctionParams = {
       functionName: "postDataAPIFunction",
-      codePath: "lambda/APIFunction",
+      codePath: "lambda/post_data",
       runtime: Runtime.PYTHON_3_9,
       description: "API Gateway用のLambda",
       handler: "index.handler",
