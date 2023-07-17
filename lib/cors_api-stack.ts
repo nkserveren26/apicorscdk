@@ -28,7 +28,7 @@ export class CorsApiStack extends cdk.Stack {
 
     const getDataLambdaFunction: Function = LambdaCreator.createLambdaFunction(this, getDataLambdaParams);
 
-    const postDataLambdaFunction: Function = LambdaCreator.createLambdaFunction(this, getDataLambdaParams);
+    const postDataLambdaFunction: Function = LambdaCreator.createLambdaFunction(this, postDataLambdaParams);
 
     const ApiParams = [
       {
