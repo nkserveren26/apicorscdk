@@ -9,12 +9,6 @@ export class APIGatewayCreator {
         return new RestApi(self,apiGatewayName, {
             restApiName: apiGatewayName,
             description: apiDescription,
-            defaultCorsPreflightOptions: {
-                allowOrigins: Cors.ALL_ORIGINS,
-                allowMethods: Cors.ALL_METHODS,
-                allowHeaders: Cors.DEFAULT_HEADERS,
-                statusCode: 200,
-            }, 
         });
     }
 
