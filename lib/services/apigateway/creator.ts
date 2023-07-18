@@ -1,4 +1,4 @@
-import { Cors, LambdaIntegration, MockIntegration, PassthroughBehavior, Resource, RestApi } from "aws-cdk-lib/aws-apigateway";
+import { Cors, LambdaIntegration, MockIntegration, Model, PassthroughBehavior, Resource, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
 
 export class APIGatewayCreator {
@@ -45,6 +45,9 @@ export class APIGatewayCreator {
                             "method.response.header.Access-Control-Allow-Headers": true,
                             "method.response.header.Access-Control-Allow-Origin": true,
                             "method.response.header.Access-Control-Allow-Methods": true,
+                        },
+                        responseModels: {
+                            "application/json": Model.EMPTY_MODEL,
                         },
                     },
                 ]
