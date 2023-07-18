@@ -1,4 +1,4 @@
-import { Cors, LambdaIntegration, Resource, RestApi } from "aws-cdk-lib/aws-apigateway";
+import { Cors, LambdaIntegration, MockIntegration, PassthroughBehavior, Resource, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
 
 export class APIGatewayCreator {
@@ -14,6 +14,20 @@ export class APIGatewayCreator {
 
     public static addResourceToApi(restApi: RestApi, resourceName: string): Resource  {
         return restApi.root.addResource(resourceName);
+    }
+
+    public static addOptionMethod(apiResource: Resource) : void {
+        apiResource.addMethod(
+            "OPTIONS",
+            new MockIntegration({
+                integrationResponses: [],
+                passthroughBehavior: PassthroughBehavior.NEVER,
+                requestTemplates: {
+                    "application/json": '{"statusCode": 200}',
+                }
+            }),
+        );
+
     }
 
     public static addMethodToResource(
