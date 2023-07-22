@@ -55,4 +55,50 @@ API Gateway側でこれを実現するには、対象となるリクエストに
 メソッドレスポンスの200レスポンスヘッダーに、上記ヘッダーを追加します。
 ![Alt text](image-1.png)
 
+## CORS設定がされたAPI GatewayをCDKで実装
+API Gatewayに対する上記CORS設定をCDKで実装したのが以下です。  
+lib/apigateway/creator.ts  
+　addOptionsMethodにて、API GatewayリソースにOPTIONSメソッドを追加  
+　　MockIntegrationが統合レスポンスの設定に該当  
+　　第3引数がメソッドレスポンスの設定に該当
+```
+public static addOptionMethod(apiResource: Resource) : void {
+        apiResource.addMethod(
+            "OPTIONS",
+            new MockIntegration({
+                integrationResponses: [
+                    {
+                        statusCode: "200",
+                        responseParameters: {
+                            "method.response.header.Access-Control-Allow-Headers":
+                                "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                            "method.response.header.Access-Control-Allow-Origin": "'*'",
+                            "method.response.header.Access-Control-Allow-Methods":
+                                "'OPTIONS,GET,PUT,POST,DELETE'",
+                        },
+                    },
+                ],
+                passthroughBehavior: PassthroughBehavior.NEVER,
+                requestTemplates: {
+                    "application/json": '{"statusCode": 200}',
+                }
+            }),
+            {
+                methodResponses: [
+                    {
+                        statusCode: "200",
+                        responseParameters: {
+                            "method.response.header.Access-Control-Allow-Headers": true,
+                            "method.response.header.Access-Control-Allow-Origin": true,
+                            "method.response.header.Access-Control-Allow-Methods": true,
+                        },
+                        responseModels: {
+                            "application/json": Model.EMPTY_MODEL,
+                        },
+                    },
+                ]
+            },
+        );
 
+    }
+```
