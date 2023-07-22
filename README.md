@@ -35,11 +35,19 @@ def handler(event, context):
 　Lambdaのレスポンスヘッダーに以下のヘッダーを追加  
 　　Access-Control-Allow-Origin
 
-・preflightリクエストでCORS有効化  
+#### preflightリクエストでCORS有効化  
 具体的には、REST APIのOPTIONSメソッドのレスポンスヘッダーに以下のヘッダーを追加し、必要に応じて各ヘッダーに値を指定する必要がある。  
 　Access-Control-Allow-Headers：CORSリクエストで使うヘッダーを指定する  
 　Access-Control-Allow-Methods：CORSリクエストのメソッドを指定する  
+　Access-Control-Allow-Origin：CORSリクエスト実行元ドメインを指定する
 　
 
-API Gateway側でこれを実現するには、以下の設定が必要となる。
+API Gateway側でこれを実現するには、以下の部分での設定が必要となる。  
+　統合レスポンス  
+　メソッドレスポンス  
+
+・統合レスポンス  
+統合レスポンスで、上記ヘッダーのマッピングを追加する。  
+マッピングの値に、各ヘッダーで指定する値を設定する。
+![Alt text](image.png)
 
