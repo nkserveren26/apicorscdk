@@ -36,18 +36,18 @@ def handler(event, context):
 　　Access-Control-Allow-Origin
 
 #### preflightリクエストでCORS有効化  
-具体的には、REST APIのOPTIONSメソッドのレスポンスヘッダーに以下のヘッダーを追加し、必要に応じて各ヘッダーに値を指定する必要がある。  
-　Access-Control-Allow-Headers：CORSリクエストで使うヘッダーを指定する  
-　Access-Control-Allow-Methods：CORSリクエストのメソッドを指定する  
-　Access-Control-Allow-Origin：CORSリクエスト実行元ドメインを指定する
+具体的には、REST APIのOPTIONSメソッドのレスポンスヘッダーに以下のヘッダーを追加し、必要に応じて各ヘッダーに値を指定する必要があります。  
+　Access-Control-Allow-Headers：CORSリクエストで使うヘッダーを指定  
+　Access-Control-Allow-Methods：CORSリクエストのメソッドを指定  
+　Access-Control-Allow-Origin：CORSリクエスト実行元ドメインを指定
 　
 
-API Gateway側でこれを実現するには、以下の部分での設定が必要となる。  
+API Gateway側でこれを実現するには、以下の部分での設定が必要となります。  
 　統合レスポンス  
 　メソッドレスポンス  
 
 ・統合レスポンス  
-統合レスポンスで、上記ヘッダーのマッピングを追加する。  
-マッピングの値に、各ヘッダーで指定する値を設定する。
+統合レスポンスで、上記ヘッダーのマッピングを追加します。  
+マッピングの値に、各ヘッダーで指定する値を設定します。
 ![Alt text](image.png)
 
