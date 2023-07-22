@@ -29,3 +29,8 @@ def handler(event, context):
 
 
 ### シンプルリクエストでない場合のCORS対応
+シンプルリクエストでない場合、API Gateway+Lambda構成でやることは以下です。  
+シンプルリクエスト時の対応に加えて、preflightリクエストの対応が必要になります。  
+　preflightリクエストでCORS有効化  
+　Lambdaのレスポンスヘッダーに以下のヘッダーを追加  
+　　Access-Control-Allow-Origin
