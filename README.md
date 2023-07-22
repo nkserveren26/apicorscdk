@@ -30,7 +30,14 @@ def handler(event, context):
 
 ### シンプルリクエストでない場合のCORS対応
 シンプルリクエストでない場合、API Gateway+Lambda構成でやることは以下です。  
-シンプルリクエスト時の対応に加えて、preflightリクエストの対応が必要になります。  
+（シンプルリクエスト時の対応に加えて、preflightリクエストの対応が必要になります。）  
 　preflightリクエストでCORS有効化  
 　Lambdaのレスポンスヘッダーに以下のヘッダーを追加  
 　　Access-Control-Allow-Origin
+
+・preflightリクエストでCORS有効化  
+具体的には、REST APIのOPTIONSメソッドのレスポンスヘッダーに以下のヘッダーを追加する必要がある。
+　
+
+API Gateway側でこれを実現するには、以下の設定が必要となる。
+
